@@ -5,13 +5,15 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
-    "build": "vite build",
+    "build": "vite build && npm run prerender",
+    "build:spa": "vite build",
+    "prerender": "tsx scripts/extract-data.ts && tsx scripts/validate-dates.ts && tsx scripts/prerender.ts",
+    "submit-index": "tsx scripts/extract-data.ts && tsx scripts/submit-indexnow.ts",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
     "lint": "tsc --noEmit"
   },
   "dependencies": {
-    "@google/genai": "^1.29.0",
     "@tailwindcss/vite": "^4.1.14",
     "@vitejs/plugin-react": "^5.0.4",
     "dotenv": "^17.2.3",
